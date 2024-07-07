@@ -29,6 +29,7 @@ export default {
             white: "#ffff",
             red: "#DF2F2F",
             "red-light": "#F1A7AD",
+            "dark-light": "rgba(0, 0, 0, 0.5)",
         },
         fontFamily: {
             sans: ["Poppins", "sans-serif"],

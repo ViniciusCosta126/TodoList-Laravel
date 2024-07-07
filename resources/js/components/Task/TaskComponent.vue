@@ -10,7 +10,7 @@
                 : '',
         ]"
     >
-        <p class="w-1/4 font-semibold cursor-pointer">
+        <p @click="toggleOpen" class="w-1/4 font-semibold cursor-pointer">
             {{ task.titulo }}
         </p>
         <p class="w-1/4">
@@ -20,8 +20,23 @@
             <i class="fas mr-1 md:mr-3 text-red fa-trash"></i>
             <i class="fas text-yellow fa-edit"></i>
         </div>
+        <TaskModalComponent
+            :open="open"
+            :task="task"
+            :toggle-open="toggleOpen"
+        />
     </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+import TaskModalComponent from "../TaskModal/TaskModalComponent.vue";
+const open = ref(false);
+
+const toggleOpen = () => {
+    open.value = !open.value;
+};
+</script>
 
 <script>
 export default {
@@ -31,6 +46,9 @@ export default {
             type: Object,
             required: true,
         },
+    },
+    components: {
+        TaskModalComponent,
     },
 };
 </script>
