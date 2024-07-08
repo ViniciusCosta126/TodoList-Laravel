@@ -20,6 +20,7 @@ export default {
                     descricao:
                         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
                     data: new Date("07-07-2024"),
+                    status: false,
                 },
                 {
                     id: 2,
@@ -27,6 +28,7 @@ export default {
                     descricao:
                         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
                     data: new Date("07-06-2024"),
+                    status: true,
                 },
                 {
                     id: 3,
@@ -34,6 +36,7 @@ export default {
                     descricao:
                         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
                     data: new Date("07-17-2024"),
+                    status: false,
                 },
             ],
         };
