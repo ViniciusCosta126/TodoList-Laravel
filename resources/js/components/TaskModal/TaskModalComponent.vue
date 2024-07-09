@@ -7,7 +7,7 @@
         ]"
     >
         <div
-            class="bg-gray shadow transition transition-all relative w-10/12 md:w-7/12 lg:3/12 mx-auto h-fit rounded px-2 py-6 lg:py-16"
+            class="bg-gray-light shadow transition transition-all relative w-10/12 md:w-7/12 lg:3/12 mx-auto h-fit rounded px-2 py-6 lg:py-16"
         >
             <div
                 @click="openModal"

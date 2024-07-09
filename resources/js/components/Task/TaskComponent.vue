@@ -42,17 +42,23 @@
                 class="fas mr-1 md:mr-3 text-red fa-trash cursor-pointer"
                 @click="handleDeleteTask"
             ></i>
-            <i class="fas text-yellow fa-edit"></i>
+            <i class="fas text-yellow fa-edit" @click="formModalOpen"></i>
         </div>
         <TaskModalComponent :open="open" :task="task" :openModal="toggleOpen" />
+        <FormModalTaskComponent
+            :openForm="openForm"
+            :task="task"
+            :openModalForm="formModalOpen"
+            @taskUpdated="$emit('taskUpdated', $event)"
+        />
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
 import TaskModalComponent from "../TaskModal/TaskModalComponent.vue";
 import { deleteTask, updateTaskStatus } from "../../Services/task";
+import FormModalTaskComponent from "../FormModalTask/FormModalTaskComponent.vue";
 
 const props = defineProps({
     task: {
@@ -61,11 +67,16 @@ const props = defineProps({
     },
 });
 
-const emit = defineEmits(["taskDeleted"]);
+const emit = defineEmits(["taskDeleted", "taskUpdated"]);
 const open = ref(false);
+const openForm = ref(false);
 
 const toggleOpen = () => {
     open.value = !open.value;
+};
+
+const formModalOpen = () => {
+    openForm.value = !openForm.value;
 };
 
 const handleDeleteTask = () => {
@@ -83,6 +94,7 @@ export default {
     name: "TaskComponent",
     components: {
         TaskModalComponent,
+        FormModalTaskComponent,
     },
 };
 </script>

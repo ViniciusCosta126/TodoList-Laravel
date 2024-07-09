@@ -6,6 +6,7 @@
                 :key="task.id"
                 :task="task"
                 @taskDeleted="removeTask"
+                @taskUpdated="updateTaskInList"
             />
         </ContainerComponent>
     </div>
@@ -34,6 +35,14 @@ export default {
     methods: {
         removeTask(deletedTaskId) {
             this.tasks = this.tasks.filter((task) => task.id !== deletedTaskId);
+        },
+        updateTaskInList(updatedTask) {
+            const index = this.tasks.findIndex(
+                (task) => task.id === updatedTask.id
+            );
+            if (index !== -1) {
+                this.tasks.splice(index, 1, updatedTask);
+            }
         },
     },
     components: {
