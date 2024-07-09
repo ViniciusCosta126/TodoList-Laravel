@@ -10,7 +10,7 @@
             class="bg-gray shadow transition transition-all relative w-10/12 md:w-7/12 lg:3/12 mx-auto h-fit rounded px-2 py-6 lg:py-16"
         >
             <div
-                @click="toggleOpen"
+                @click="openModal"
                 class="absolute right-3 top-1 lg:right-8 cursor-pointer"
             >
                 <i class="fas text-2xl text-red fa-times"></i>
@@ -23,13 +23,15 @@
 
             <p>
                 <span class="font-bold">Data de entrega:</span>
-                {{ task.data.toLocaleDateString() }}
+                {{ task.data_entrega }}
             </p>
         </div>
     </div>
 </template>
 
 <script>
+import { convertData } from "../../Helpers/dataConvert.js";
+
 export default {
     name: "TaskModalComponent",
     props: {
@@ -41,7 +43,7 @@ export default {
             type: Object,
             required: true,
         },
-        toggleOpen: {
+        openModal: {
             type: Function,
             required: true,
         },

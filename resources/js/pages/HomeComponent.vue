@@ -1,45 +1,40 @@
 <template>
     <div>
         <ContainerComponent>
-            <TaskComponent v-for="task in tasks" :key="task.id" :task="task" />
+            <TaskComponent
+                v-for="task in tasks"
+                :key="task.id"
+                :task="task"
+                @taskDeleted="removeTask"
+            />
         </ContainerComponent>
     </div>
 </template>
 
 <script>
+import axios from "axios";
 import ContainerComponent from "../components/Container/ContainerComponent.vue";
 import TaskComponent from "../components/Task/TaskComponent.vue";
+import { convertData } from "../Helpers/dataConvert";
 export default {
     name: "HomeComponent",
     data() {
         return {
-            tasks: [
-                {
-                    id: 1,
-                    titulo: "teste1",
-                    descricao:
-                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
-                    data: new Date("07-07-2024"),
-                    status: false,
-                },
-                {
-                    id: 2,
-                    titulo: "teste2",
-                    descricao:
-                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
-                    data: new Date("07-06-2024"),
-                    status: true,
-                },
-                {
-                    id: 3,
-                    titulo: "teste3",
-                    descricao:
-                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt nobis maiores provident amet? Quis, blanditiis pariatur.",
-                    data: new Date("07-17-2024"),
-                    status: false,
-                },
-            ],
+            tasks: [],
         };
+    },
+    mounted() {
+        axios.get("/api/tasks").then((response) => {
+            response.data.forEach((element) => {
+                element.data_entrega = convertData(element.data_entrega);
+            });
+            this.tasks = response.data;
+        });
+    },
+    methods: {
+        removeTask(deletedTaskId) {
+            this.tasks = this.tasks.filter((task) => task.id !== deletedTaskId);
+        },
     },
     components: {
         ContainerComponent,

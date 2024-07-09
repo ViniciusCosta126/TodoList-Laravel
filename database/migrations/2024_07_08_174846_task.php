@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->enum('status', ['backlog', 'em andamento', 'finalizado'])->default('backlog');
             $table->date('data_entrega');
+            $table->string("descricao");
             $table->timestamps();
         });
     }
